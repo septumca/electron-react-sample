@@ -4,7 +4,7 @@ var glob = require('glob');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 
-gulp.task('js', function () {
+gulp.task('bundle-js', function () {
 
     const src_files = glob.sync('./src/**/*.js');
 
@@ -18,3 +18,9 @@ gulp.task('js', function () {
     .pipe(gulp.dest('dist'));
 
 });
+
+gulp.task('copy-resources', function() {
+    gulp.src('./src/resources/**/*').pipe(gulp.dest('dist/resources'));
+});
+
+gulp.task('build', ['bundle-js']);
